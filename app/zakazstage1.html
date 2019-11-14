@@ -2,10 +2,10 @@
 <html>
 <head>
 	<meta charset='UTF8'>
-	<title>Домашняя</title>
+	<title>Заказ. Шаг 1.</title>
 	<link rel="stylesheet" href="css/styles.css" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-	<script src="js/script.js"></script>
+	<script src="js/categorymenu.js"></script>
 </head>
 <body>
 	<!-- Header -->
@@ -37,52 +37,73 @@
 			<li class="l-nav__o-title">Events</li>
 		</ul>
 	</nav>
-	<template id="menublock">
-		<div class="c-menu-dialog" style="display: block;">
-			<article class="c-menu-dialog__o-title1">Home Decor</article>
-			<article class="c-menu-dialog__o-title2">Create & live your unique style</article>
-			<article class="c-menu-dialog__o-count-items">25478 items</article>
-			<div class="c-menu-dialog__o-line"></div>
-			<div class="c-menu-dialog-container">
-				<article class="c-menu-dialog-container__o-title3">Pots & Pans<br>Pressure Cookers<br>Kitchen Tools<br>Gas Stoves<br>Dining & Serving<br>Coffee Mugs<br>Dinnerware & Crockery<br>Bar & Glassware</article>
-				<article class="c-menu-dialog-container__o-title3">Kitchen Storage<br>Lunch Boxes<br>Flasks & Casseroles<br>Kitchen Containers<br>Furniture<br>Beds<br>Sofas<br>Dining tables & Sets</article>
-				<article class="c-menu-dialog-container__o-title3">Mattresses<br>Tables<br>Chairs<br>Bean Bags<br>Shoe Racks<br>TV Units & Cabinets<br>Wardrobes</article>
-			</div>
-		</div>
-	</template>
+	<span class="l-header2">
+		<span class="l-header2__o-item">Home</span>
+		<span class="l-header2__o-item"><svg style="width: 5px; height: 8px;"><use xlink:href="#icon-arrow-right"></use></svg></span>
+		<span class="l-header2__o-item">Cart</span>
+		<span class="l-header2__o-item"><svg style="width: 5px; height: 8px;"><use xlink:href="#icon-arrow-right"></use></svg></span>
+		<span class="l-header2__o-item">Checkout</span>
+	</span>
 	<!-- /Header -->
 	<!-- Main Content -->
-	<section class="l-home-main">
-			<div class="l-home-first-type-container" style="width: 89%; max-width: 1450px;">
-				
+	<div class="l-main">
+	<section class="l-maincontent">
+		<div class="l-maincontent__c-pages">
+			<article class="l-maincontent__o-article-1"><span class="l-maincontent__o-triangle-1"></span>Shipping Address</article>
+			<article class="l-maincontent__o-article-2">Payment</article>
+		</div>
+		<div class="l-maincontent__c-sendform">
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">First Name*</article>
+				<input class="o-input" value="Jhone">
 			</div>
-			<div class="l-home-second-type-container" style="width: 89%; max-width: 1450px; margin-top: 70px;">
-				<div class="l-home-column-container">
-					
-					<div class="l-home-column-container-string">
-						
-					</div>
-					<div class="l-home-column-container-string">
-						
-					</div>
-					<div class="l-home-column-container-string">
-						
-					</div>
-				</div>
-				<div class="l-home-column-container">
-					<div class="l-home-column-container-string">
-						
-					</div>
-					<div class="l-home-column-container-string">
-						
-					</div>
-					
-					<div class="l-home-column-container-string">
-						
-					</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Last Name*</article>
+				<input class="o-input" value="Smith">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Company Name</article>
+				<input class="o-input" value="Rosuson Industries">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Country*</article>
+				<input class="o-input" value="United Kingdom">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Town / City*</article>
+				<input class="o-input" value="e.g. New York">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Postcode*</article>
+				<input class="o-input" value="e.g. 358745">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Address*<span class="o-article-required">Required*</span></article>
+				<input class="o-input-long" value="eg. 2nd steer, Costrica, Uk 354548"></input>
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Email Address*</article>
+				<input class="o-input" value="abc@xyz.com">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Phone</article>
+				<input class="o-input" value="eg. 94 788 1221">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<div class="l-maincontent__checkbox">
+					<input id="check1" type="checkbox" class="o-checkbox" name="check" value="check1">
+					<label for="check1" class="label-checkbox">Create an Account?</label>
+					<input id="check2" type="checkbox" class="o-checkbox" name="check" value="check2" checked/>
+					<label for="check2" class="label-checkbox">Create an Account?</label>
 				</div>
 			</div>
+			<div class="l-maincontent__c_buttons">
+				<button class="o-button o-button_white">Back</button>
+				<a href="zakazstage2.html"><button class="o-button o-button_green" style="border-radius: 3px;">Next</button></a>
+			</div>
+		</div>
 	</section>
+	</div>
 	<!-- /Main Content -->
 	<!-- Footer -->
 	<footer>
@@ -126,9 +147,6 @@
 		</g>
 		<g id="icon-arrow-right" viewBox="0 0 5 8">
 			<path fill="#9B9B9A" fill-rule="evenodd" d="M5.005 4L.99 8.008V-.01z"/>
-		</g>
-		<g id="icon-arrow-block-right" viewBox="0 0 12 20">
-			<path fill="#C6C6C5" fill-rule="evenodd" d="M2.056.006l9.946 9.938-1.882 1.88-.024-.023-8.203 8.205-1.888-1.888 8.202-8.204L.174 1.886 2.056.006z"/>
 		</g>
 	</svg>
 	<!-- /Include -->
