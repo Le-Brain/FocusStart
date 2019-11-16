@@ -1,4 +1,4 @@
-var categories = [
+const categories = [
     {
         "category" : "Home Decor",
         "countitems" : 1,
@@ -46,12 +46,18 @@ var categories = [
     }
 ];
 
-const displayMenu = function(event) {
+export const displayMenu = function(event) {
     let elementOfEvent = event.currentTarget;
     var objectCategory;
     categories.forEach((elem) => {
         if (elem.category == elementOfEvent.innerHTML) objectCategory = elem;
     })
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3000/api/categories.json", true);
+    xhr.send();
+    xhr.onload = function(e) {
+        console.log(xhr.responseText);
+    }
     let menu = document.getElementsByTagName("template")[0];
     let menuHTML = `<div class="c-menu-dialog" style="display: block;">
     <article class="c-menu-dialog__o-title1">${objectCategory.category}</article>
@@ -69,17 +75,8 @@ const displayMenu = function(event) {
     elementOfEvent.appendChild(elem);
 }
 
-const hideMenu = function(event) {
+export const hideMenu = function(event) {
     let elem = event.currentTarget;
     let child = elem.lastChild;
     elem.removeChild(child);
 }
-
-window.onload = function() {
-  console.log("Страница загружена");
-  const navArticles = document.querySelectorAll(".l-nav__o-title");
-  navArticles.forEach((elem) => {
-    elem.addEventListener("mouseenter", displayMenu);
-    elem.addEventListener("mouseleave", hideMenu);
-  });
-};
