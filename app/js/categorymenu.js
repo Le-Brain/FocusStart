@@ -1,4 +1,16 @@
+import { renderProducts } from '/js/script.js';
+
 const xhr = new XMLHttpRequest();
+const menu_block = document.querySelector(".menublock");
+
+function refreshProducts(event) {
+    let article = event.target;
+    let elementLi = article.parentNode.parentNode.parentNode.parentNode.parentNode;
+    let value = elementLi.innerText;
+    elementLi.removeChild(elementLi.lastChild);
+    if (elementLi.innerText == "") elementLi.innerText = value;
+    renderProducts();
+}
 
 export const displayMenu = function(event) {
     let elementOfEvent = event.target;
@@ -11,19 +23,18 @@ export const displayMenu = function(event) {
     xhr.send();
     xhr.onload = function(e) {
         let objectCategory = JSON.parse(xhr.responseText);
-        let menuHTML = `<div class="c-menu-dialog" style="display: block;">
-        <article class="c-menu-dialog__o-title1">${objectCategory.category}</article>
-        <article class="c-menu-dialog__o-title2">Create & live your unique style</article>
-        <article class="c-menu-dialog__o-count-items">${objectCategory.countitems} items</article>
-        <div class="c-menu-dialog__o-line"></div>
-        <div class="c-menu-dialog-container">
-        <article class="c-menu-dialog-container__o-title3">${objectCategory.articles[0]}<br>${objectCategory.articles[0]}<br>${objectCategory.articles[0]}<br></article>
-        <article class="c-menu-dialog-container__o-title3">${objectCategory.articles[1]}<br>${objectCategory.articles[1]}<br>${objectCategory.articles[1]}<br></article>
-        <article class="c-menu-dialog-container__o-title3">${objectCategory.articles[2]}<br>${objectCategory.articles[2]}<br>${objectCategory.articles[2]}<br></article>
-        </div>
-        </div>`;
+        let node = document.importNode(menu_block.content, true);
+        let category = node.querySelector(".c-menu-dialog__o-title1");
+        let countitems = node.querySelector(".c-menu-dialog__o-count-items");
+        countitems.innerText = `${objectCategory.countitems}`;
+        let titlenames = node.querySelectorAll(".c-menu-dialog-container__o-titlename");
+        titlenames.forEach((item) => {
+            item.innerText = `${objectCategory.articles[0]}`;
+            item.addEventListener("click", refreshProducts);
+        })
+        category.innerText = `${objectCategory.category}`;
         let elem = document.createElement("div");
-        elem.innerHTML = menuHTML;
+        elem.appendChild(node);
         elementOfEvent.appendChild(elem);
         }
     }

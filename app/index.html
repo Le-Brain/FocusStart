@@ -18,8 +18,8 @@
 		<div class="l-header__headeritems">
 			<a href="zakazstage1.html"><button class="l-header__o-button o-button_white">Request Quote</button></a>
 			<a href="category.html"><button class="l-header__o-button o-button_white"><span class="l-header__circle">9+</span>Dashboard</button></a>
-			<a href="home.html"><svg class="l-header__o-icon-1"><use xlink:href="#icon-first"></use></svg></a>
-			<a href="korzina.html"><svg class="l-header__o-icon-2"><use xlink:href="#icon-second"></use></svg></a>
+			<svg class="l-header__o-icon-1"><use xlink:href="#icon-first"></use></svg>
+			<svg class="l-header__o-icon-2"><use xlink:href="#icon-second"></use></svg>
 			<img src="assets/images/user-10@3x.jpg" width="40" height="40">
 			<span class="l-header__item"><svg style="width: 9px; height: 5px;"><use xlink:href="#icon-arrow-down"></use></svg></span>
 		</div>
@@ -37,22 +37,41 @@
 			<li class="l-nav__o-title">Events</li>
 		</ul>
 	</nav>
-	<template id="menublock">
-		<div class="c-menu-dialog" style="display: block;">
-			<article class="c-menu-dialog__o-title1">Home Decor</article>
-			<article class="c-menu-dialog__o-title2">Create & live your unique style</article>
-			<article class="c-menu-dialog__o-count-items">25478 items</article>
-			<div class="c-menu-dialog__o-line"></div>
-			<div class="c-menu-dialog-container">
-				<article class="c-menu-dialog-container__o-title3">Pots & Pans<br>Pressure Cookers<br>Kitchen Tools<br>Gas Stoves<br>Dining & Serving<br>Coffee Mugs<br>Dinnerware & Crockery<br>Bar & Glassware</article>
-				<article class="c-menu-dialog-container__o-title3">Kitchen Storage<br>Lunch Boxes<br>Flasks & Casseroles<br>Kitchen Containers<br>Furniture<br>Beds<br>Sofas<br>Dining tables & Sets</article>
-				<article class="c-menu-dialog-container__o-title3">Mattresses<br>Tables<br>Chairs<br>Bean Bags<br>Shoe Racks<br>TV Units & Cabinets<br>Wardrobes</article>
-			</div>
-		</div>
-	</template>
 	<!-- /Header -->
 	<!-- Main Content -->
-	<section class="l-home-main">
+	<div class="mainsectioncontent">
+		<div></div>
+	</div>
+	<!-- /Main Content -->
+	<!-- Footer -->
+	<footer>
+		<div class="l-footer">
+			<div class="l-footer__c-items">
+				<article class="l-footer__o-article">How We Help</article>
+				<div class="l-footer__o-text">Retailers<br>Interiors Designer<br>Product Designers<br>Wholesalers / Importers<br>Artisans</div>
+			</div>
+			<div class="l-footer__c-items">
+				<article class="l-footer__o-article">Get to Know Us</article>
+				<div class="l-footer__o-text">About<br>Policies<br>Careers<br>Press</div>
+			</div>
+			<div class="l-footer__c-items">
+				<article class="l-footer__o-article">Join the Community</article>
+				<div class="l-footer__o-text">Upcoming Events<br>Become a Buyer<br>Become a Seller</div>
+			</div>
+			<div class="l-footer__c-items">
+				<article class="l-footer__o-article">Follow Us</article>
+				<div class="l-footer__o-text"><span class="l-footer__o-itemicon-facebook"></span>Facebook<br><span class="l-footer__o-itemicon-pinterest"></span>Pinterest<br><span class="l-footer__o-itemicon-twitter"></span>Twitter<br><span class="l-footer__o-itemicon-instagram"></span>Instagram</div>
+			</div>
+		</div>
+		<div class="o-footer-line-container">
+			<div class="o-footer-line"></div>
+		</div>
+		<div class="o-footer-copyright">© 2016 Uimint.com     Terms & Conditions     Privacy</div>
+	</footer>
+	<!-- /Footer -->
+	<!-- Include svg files -->
+	<template class="maincont"> <!-- Шаблон для отображения главного контента страницы home.html (index.html) -->
+		<section class="l-home-main">
 			<div class="l-home-first-type-container" style="width: 89%; max-width: 1450px;">
 				
 			</div>
@@ -82,35 +101,112 @@
 					</div>
 				</div>
 			</div>
-	</section>
-	<!-- /Main Content -->
-	<!-- Footer -->
-	<footer>
-		<div class="l-footer">
-			<div class="l-footer__c-items">
-				<article class="l-footer__o-article">How We Help</article>
-				<div class="l-footer__o-text">Retailers<br>Interiors Designer<br>Product Designers<br>Wholesalers / Importers<br>Artisans</div>
-			</div>
-			<div class="l-footer__c-items">
-				<article class="l-footer__o-article">Get to Know Us</article>
-				<div class="l-footer__o-text">About<br>Policies<br>Careers<br>Press</div>
-			</div>
-			<div class="l-footer__c-items">
-				<article class="l-footer__o-article">Join the Community</article>
-				<div class="l-footer__o-text">Upcoming Events<br>Become a Buyer<br>Become a Seller</div>
-			</div>
-			<div class="l-footer__c-items">
-				<article class="l-footer__o-article">Follow Us</article>
-				<div class="l-footer__o-text"><span class="l-footer__o-itemicon-facebook"></span>Facebook<br><span class="l-footer__o-itemicon-pinterest"></span>Pinterest<br><span class="l-footer__o-itemicon-twitter"></span>Twitter<br><span class="l-footer__o-itemicon-instagram"></span>Instagram</div>
+		</section>
+	</template>
+	<template class="menublock"> <!-- Шаблон для отображения menu -->
+		<div class="c-menu-dialog" style="display: block;">
+			<article class="c-menu-dialog__o-title1">Home Decor</article>
+			<article class="c-menu-dialog__o-title2">Create & live your unique style</article>
+			<article class="c-menu-dialog__o-count-items">25478 items</article>
+			<div class="c-menu-dialog__o-line"></div>
+			<div class="c-menu-dialog-container">
+				<article class="c-menu-dialog-container__o-title3">
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+				</article>
+				<article class="c-menu-dialog-container__o-title3">
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+				</article>
+				<article class="c-menu-dialog-container__o-title3">
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+					<div class="c-menu-dialog-container__o-titlename"></div>
+				</article>
 			</div>
 		</div>
-		<div class="o-footer-line-container">
-			<div class="o-footer-line"></div>
-		</div>
-		<div class="o-footer-copyright">© 2016 Uimint.com     Terms & Conditions     Privacy</div>
-	</footer>
-	<!-- /Footer -->
-	<!-- Include svg files -->
+	</template>
+	<template class="korzinamaincontent"> <!-- Шаблон для отображения корзины -->
+		<section class="l-main-korzina">
+		<div class="l-maincontent-korzina-left">
+				<div class="l-maincontent-korzina">
+					<div class="l-maincontent__korzinearticles">
+						<article class="l-maincontent-korzina-article1" style="margin-bottom: 20px;">ITEM DETAIL</article>
+						<article class="l-maincontent-korzina-article2" style="margin-bottom: 20px; padding-left: 5px;">PRICE</article>
+						<article class="l-maincontent-korzina-article3" style="margin-bottom: 20px; padding-left: 5px;">QTY</article>
+					</div>
+					<span class="o-footer-line" style="min-width: 877px; width: 877px; display: block;"></span>
+					<table class="l-korzina-table" style="width: 877px;">
+					
+					
+					</table>
+					<span class="o-footer-line" style="min-width: 877px; width: 877px; display: block; margin-top: 20px; margin-bottom: 20px;"></span>
+					<div class="l-maincontent-container">
+						<input class="o-input" value="Coupon code">
+						<button class="o-button o-button_white" style="background-color: #878786; color: white; margin-left: 20px;">APPLY</button>
+					</div>
+					<div class="l-maincontent-container">
+						<div class="l-mainconetnet-container-2">
+							<span class="l-maincontent-korzina-article" style="margin-right: 150px;">Subtotal</span>
+							<span id="subtotal" class="l-maincontent-korzina-article"></span>
+						</div>
+						<div class="l-mainconetnet-container-2">
+							<span class="l-maincontent-korzina-article"	style="margin-right: 150px;">Shipping</span>
+							<span class="l-maincontent-korzina-article">$0.00</span>
+						</div>
+						<div class="l-maincontent-total">
+						 <div class="l-maincontent-total-article">
+							<article class="l-maincontent-korzina-article">Total Amount</article>
+							<span id="totalprice" class="l-maincontent-article-totalprice"></span>
+						 </div>
+						 <a href="zakazstage1.html"><button class="o-button o-button_green" style="width: 310px; border-radius: 3px;">PROCESS TO CHECKOUT</button></a>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="l-maincontent-korzina-right">
+					<img src="assets/images/ad@3x.jpg" width="303" height="303">
+				</div>
+		</section>
+	</template>
+	<template class="l-korzina-table-items"> <!-- Шаблон для отображения ячейки таблицы -->
+		<tr class="table-korzina-item">
+			<td class="table-cell-2-korzina">
+				<svg class="o-icon-x" width="15" height="15"><use xlink:href="#icon-x"></use></svg>
+			</td>
+			<td class="table-cell-1-korzina" style="background-image: url('assets/images/second@3x.jpg');">
+			</td>
+			<td class="table-cell-korzina-productname">
+				
+			</td>
+			<td class="table-cell-4-korzina">
+				
+			</td>
+			<td class="table-cell-3-korzina">
+				
+			</td>
+			<td class="table-cell-4-korzina">
+				
+			</td>
+		</tr>
+	</template>
 	<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
 		<g id="icon-first" viewBox="0 0 28 26">
 			<path fill="#C8C8C8" fill-rule="evenodd" d="M14 26l-1.96-1.978C4.76 17.522 0 13.142 0 7.772 0 3.392 3.36 0 7.7 0c2.38 0 4.76 1.13 6.3 2.967C15.54 1.131 17.92 0 20.3 0 24.639 0 28 3.39 28 7.772c0 5.37-4.76 9.75-12.04 16.25L14 26z"/>
@@ -129,6 +225,9 @@
 		</g>
 		<g id="icon-arrow-block-right" viewBox="0 0 12 20">
 			<path fill="#C6C6C5" fill-rule="evenodd" d="M2.056.006l9.946 9.938-1.882 1.88-.024-.023-8.203 8.205-1.888-1.888 8.202-8.204L.174 1.886 2.056.006z"/>
+		</g>
+		<g id="icon-x" viewBox="0 0 15 15">
+			<path fill="#C8C8C8" fill-rule="evenodd" d="M15 .87L14.13 0 7.5 6.63.87 0 0 .87 6.63 7.5 0 14.13l.87.87L7.5 8.37 14.13 15l.87-.87L8.37 7.5z"/>
 		</g>
 	</svg>
 	<!-- /Include -->

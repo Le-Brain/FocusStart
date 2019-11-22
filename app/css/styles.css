@@ -849,6 +849,14 @@ input[type=checkbox]:checked + .label-checkbox:before {
 	height: auto;
 }
 
+.table-korzina-item {
+	display: block;
+	animation-name: movingBox;
+	animation-duration: 200ms;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
+}
+
 .table-cell-1-korzina {
 	display: inline-block;
 	margin-top: 20px;
@@ -857,7 +865,7 @@ input[type=checkbox]:checked + .label-checkbox:before {
 	width: 136px;
 	border-radius: 5px;
 	background-image: url("../assets/images/first@3x.jpg");
-	background-size: 86px 80px;
+	background-size: 136px 100px;
 	background-repeat: no-repeat;
 	background-position: center; 
 	border: solid 1px #c6c6c5;
@@ -865,7 +873,18 @@ input[type=checkbox]:checked + .label-checkbox:before {
 }
 
 .table-cell-2-korzina {
-	display: inline;
+	display: inline-block;
+	margin-left: 50px;
+	padding-left: 0;
+	font-size: 0.875rem;
+	font-weight: 200;
+	letter-spacing: 0.28px;
+	color: #878786;
+}
+
+.table-cell-korzina-productname {
+	display: inline-block;
+	width: 150px;
 	margin-left: 50px;
 	padding-left: 0;
 	font-size: 0.875rem;
@@ -893,19 +912,6 @@ input[type=checkbox]:checked + .label-checkbox:before {
 	letter-spacing: normal;
 	text-align: right;
 	color: #878786;
-}
-
-
-.l-maincontent__korzinearticles{
-	display: flex;
-	justify-content: space-evenly;
-	font-size: 1rem;
-	font-weight: 500;
-	font-stretch: normal;
-	font-style: normal;
-	line-height: 0.56;
-	letter-spacing: normal;
-	color: #000000;
 }
 
 .l-maincontent-container {
@@ -936,7 +942,50 @@ input[type=checkbox]:checked + .label-checkbox:before {
 	text-align: right;
 	color: #000000;
 }
-.l-maincontent-korzina-article {
+.l-maincontent__korzinearticles{
+	display: flex;
+	height: 30px;
+	position: relative;
+	font-size: 1rem;
+	font-weight: 500;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 0.56;
+	letter-spacing: normal;
+	color: #000000;
+}
+
+.l-maincontent-korzina-article1 {
+	position: absolute;
+	left: 130px;
+	margin-right: 130px;
+	font-size: 1.25rem;
+	font-weight: 400;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1;
+	letter-spacing: normal;
+	color: #000000;
+}
+
+.l-maincontent-korzina-article2 {
+	position: absolute;
+	left: 500px;
+	font-size: 1.25rem;
+	font-weight: 400;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1;
+	letter-spacing: normal;
+	color: #000000;
+}
+
+.l-maincontent-korzina-article3 {
+	position: absolute;
+	left: 710px;
+	margin-right: 130px;
 	font-size: 1.25rem;
 	font-weight: 400;
 	font-weight: normal;
@@ -1019,6 +1068,10 @@ input[type=checkbox]:checked + .label-checkbox:before {
 }
 
 .l-home-first-type-container__first-block {
+	animation-name: movingBox;
+	animation-duration: 500ms;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
 	display: flex;
 	flex-wrap: wrap;
 	padding: 0px;
@@ -1029,6 +1082,10 @@ input[type=checkbox]:checked + .label-checkbox:before {
 }
 
 .l-home-second-type-container__first-block {
+	animation-name: movingBox;
+	animation-duration: 500ms;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
 	display: flex;
 	flex-wrap: wrap;
 	height: 543px;
@@ -1038,6 +1095,10 @@ input[type=checkbox]:checked + .label-checkbox:before {
 }
 
 .l-home-second-type-container__second-block {
+	animation-name: movingBox;
+	animation-duration: 500ms;
+	animation-iteration-count: 1;
+	animation-timing-function: linear;
 	display: flex;
 	flex-wrap: wrap;
 	height: 297px;
@@ -1229,6 +1290,15 @@ input[type=checkbox]:checked + .label-checkbox:before {
 	color: #878786;
 }
 
+.c-menu-dialog-container__o-titlename {
+	display: block;
+	width: 120px;
+	height: auto;
+}
+
+.c-menu-dialog-container__o-titlename:hover {
+	opacity: 0.5;
+}
 .c-menu-dialog-container {
 	display: flex;
 	justify-content: space-around;
