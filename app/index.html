@@ -10,16 +10,17 @@
 <body>
 	<!-- Header -->
 	<header class="l-header">
-		<a href="home.html"><img src="assets/images/logo@3x.png" width="166" height="54" style="margin-left: 80px;"></a>
+		<img class="l-header-main-image" src="assets/images/logo@3x.png" width="166" height="54" style="margin-left: 80px;">
 		<div class="l-header__c-searchform">
 			<input class="l-header__o-input" value="Search for Products">
 			<button class="l-header__o-button o-button_green">Search</button>
 		</div>
 		<div class="l-header__headeritems">
-			<a href="zakazstage1.html"><button class="l-header__o-button o-button_white">Request Quote</button></a>
-			<a href="category.html"><button class="l-header__o-button o-button_white"><span class="l-header__circle">9+</span>Dashboard</button></a>
+			<button class="l-header__o-button o-button_white">Request Quote</button>
+			<button class="l-header__o-button o-button_white"><span class="l-header__circle">0</span>Dashboard</button>
 			<svg class="l-header__o-icon-1"><use xlink:href="#icon-first"></use></svg>
-			<svg class="l-header__o-icon-2"><use xlink:href="#icon-second"></use></svg>
+			<span class="l-header_o-total-price-article"></span>
+			<svg class="l-header__o-icon-2"><use xlink:href="#icon-second"></use><span class="l-header__circle-2">0</span></svg>
 			<img src="assets/images/user-10@3x.jpg" width="40" height="40">
 			<span class="l-header__item"><svg style="width: 9px; height: 5px;"><use xlink:href="#icon-arrow-down"></use></svg></span>
 		</div>
@@ -176,7 +177,7 @@
 							<article class="l-maincontent-korzina-article">Total Amount</article>
 							<span id="totalprice" class="l-maincontent-article-totalprice"></span>
 						 </div>
-						 <a href="zakazstage1.html"><button class="o-button o-button_green" style="width: 310px; border-radius: 3px;">PROCESS TO CHECKOUT</button></a>
+						 <button id="processcheckout" class="o-button o-button_green" style="width: 310px; border-radius: 3px;">PROCESS TO CHECKOUT</button>
 						</div>
 					</div>
 				</div>
@@ -196,7 +197,7 @@
 			<td class="table-cell-korzina-productname">
 				
 			</td>
-			<td class="table-cell-4-korzina">
+			<td class="table-cell-4-korzina-price">
 				
 			</td>
 			<td class="table-cell-3-korzina">
@@ -206,6 +207,149 @@
 				
 			</td>
 		</tr>
+	</template>
+	<template class="informationpayment"> <!-- Шаблон для отображения информации о покупателе -->
+		<div class="l-main">
+		<section class="l-maincontent">
+		<div class="l-maincontent__c-pages">
+			<article class="l-maincontent__o-article-1"><span class="l-maincontent__o-triangle-1"></span>Shipping Address</article>
+			<article class="l-maincontent__o-article-2">Payment</article>
+		</div>
+		<div class="l-maincontent__c-sendform">
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">First Name*</article>
+				<input id="firstname" class="o-input" placeholder="">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Last Name*</article>
+				<input id="lastname" class="o-input" placeholder="">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Company Name</article>
+				<input id="companyname" class="o-input" placeholder="">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Country*</article>
+				<input id="contry" class="o-input" placeholder="">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Town / City*</article>
+				<input id="towncity" class="o-input" placeholder="">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Postcode*</article>
+				<input id="postcode" class="o-input" placeholder="">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Address*<span class="o-article-required">Required*</span></article>
+				<input id="address" class="o-input-long" placeholder=""></input>
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Email Address*</article>
+				<input id="email" class="o-input" placeholder="">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<article class="o-articleofinput">Phone</article>
+				<input id="phone" class="o-input" placeholder="">
+			</div>
+			<div class="l-maincontent__c-pole">
+				<div class="l-maincontent__checkbox">
+					<input id="check1" type="checkbox" class="o-checkbox" name="check" value="check1">
+					<label for="check1" class="label-checkbox">Create an Account?</label>
+					<input id="check2" type="checkbox" class="o-checkbox" name="check" value="check2" checked/>
+					<label for="check2" class="label-checkbox">Create an Account?</label>
+				</div>
+			</div>
+			<div class="l-maincontent__c_buttons">
+				<button id="backtobasket" class="o-button o-button_white">Back</button>
+				<button id="nexttopayment" class="o-button o-button_green" style="border-radius: 3px;">Next</button>
+			</div>
+		</div>
+		</section>
+		</div>
+	</template>
+	
+	<template class="checkpayment"> <!-- Шаблон для отображения страницы оплаты -->
+	<div class="l-main">
+	<section class="l-maincontent">
+		<div class="l-maincontent__c-pages">
+			<article class="l-maincontent__o-article-1" style="color: #878786;">Shipping Address</article>
+			<article class="l-maincontent__o-article-3"><span class="l-maincontent__o-triangle-2"></span>Payment</article>
+		</div>
+		<div class="l-maincontent__c-sendform">
+			<div class="l-maincontent__main">
+				<div class="l-maincontent__tovars">
+					<article class="l-maincontent__o-article-3" style="margin-bottom: 20px; padding-left: 5px;">Your order</article>
+					<div class="l-maincontent__c-table">
+						
+						<!-- Ячейки товаров -->
+						
+					</div>
+				</div>
+				<span class="l-maincontent__separator"></span>
+				<div class="l-maincontent__payment">
+					<div class="l-maincontent__group3">
+						<input id="creditcard" type="radio" name="payment" value="creditcard" checked/>
+						<label for="creditcard" class="label-radio">Credit Card / Debit Card</label>
+						<div class="l-maincontent__group-1">
+							<article class="o-articleofinput">Name on Card</article>
+							<input id="nameoncard" class="o-input" value="Daniel Hecker" style="width: 340px;">
+						</div>
+						<div class="l-maincontent__group-1">
+							<article class="o-articleofinput">Card Number</article>
+							<input id="cardNumber" class="o-input-visa" value="4121 4411 1414 9754" style="width: 340px;">
+						</div>
+						<div class="l-maincontent__group-2"  style="margin-bottom: 25px;">
+							<div class="l-maincontent__group-1">
+								<article class="o-articleofinput">Valid Trough</article>
+								<input id="validTrough" class="o-input" value="MM / DD" style="width: 165px;">
+							</div>
+							<div class="l-maincontent__group-1">
+								<article class="o-articleofinput">CVV</article>
+								<input id="cvv" class="o-input" value="eg. 201" style="width: 165px;">
+							</div>
+						</div>
+						<input id="Paypal" type="radio" name="payment" value="Paypal">
+						<label for="Paypal" class="label-radio">Paypal</label>
+						<div class="l-maincontent__group-1">
+							<article class="o-articleofinput">Email Address*</article>
+							<input id="emailCheck" class="o-input" value="abc@xyz.com" style="width: 340px;">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="l-maincontent__c_buttons">
+				<button id="checkpaymentpageback" class="o-button o-button_white">Back</button>
+				<button id="checkpaymentpagepay" class="o-button o-button_green" style="width: 340px; border-radius: 3px;">Pay</button>
+			</div>
+		</div>
+	</section>
+	</div>
+	</template>
+	<template class="itemofcheckpaymentpage"> <!-- Шаблон для отображения товара на странице оплаты -->
+	<div class="l-maincontent__c-table-row">
+			<div class="l-maincontent__c-table-cell table-cell-1">
+			
+			</div>
+			<div class="l-maincontent__c-table-cell table-cell-2">
+			
+			</div>
+			<div class="l-maincontent__c-table-cell table-cell-3">
+				
+			</div>
+			<div class="l-maincontent__c-table-cell table-cell-4">
+				
+			</div>
+		</div>
+	</template>
+	<template class="successpayment">
+		<div class="l-main">
+		<section class="l-maincontent" style="height: 700px;">
+			<article class="o-title-1">Congratulations</article>
+			<div class="o-title-2">Order Placed Successfully!</div>
+			<button id="backtoshopping" class="o-button o-button_green" style="width: 220px; margin: 0 auto; border-radius: 3px;">BACK TO SHOPPING</button>
+		</section>
+	</div>
 	</template>
 	<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
 		<g id="icon-first" viewBox="0 0 28 26">

@@ -1,6 +1,6 @@
 import { basket } from '/js/classbasket.js'
+import { XHRwithPromise, HostName } from '/js/utils.js';
 
-const xhr = new XMLHttpRequest();
 const mainsection = document.querySelector(".maincont");
 export var products;
 var listOfElements = [];
@@ -28,8 +28,9 @@ function generateRandomNumbers(randLength, min, max) {
 }
 
 export function renderProducts() {
-    listOfElements = [];
-    let ListOfNumbers = generateRandomNumbers(17,1,17);
+    window.location.hash = "#products";
+    document.querySelector(".l-header__circle-2").innerText = basket.sumCount();
+    document.querySelector(".l-header_o-total-price-article").innerText = basket.sumPrices() + " $";
     let maincontentTemplate = document.importNode(mainsection.content, true);
     let maincontent = document.querySelector(".mainsectioncontent");
     maincontent.removeChild(maincontent.lastChild);
@@ -39,13 +40,9 @@ export function renderProducts() {
     var elementsColumnContainers = maincontent.querySelectorAll(".l-home-column-container");
     var elementsColumnStrings = maincontent.querySelectorAll(".l-home-column-container-string");
     var countOfElements = 17;
-    xhr.open("GET", `http://localhost:3000/api/objects.json`, true);
-    xhr.error = function(e) {
-        console.log(xhr.readyState);
-    }
-    xhr.send();
-    xhr.onload = function(e) {
-        products = JSON.parse(xhr.responseText);
+    var numberCategory = Math.floor(Math.random()*2)+1;
+    XHRwithPromise(HostName.concat(`/api/products/objects${numberCategory}.json`), 'GET').then(function(result) {
+        products = result;
         for (let i=0; i<countOfElements; i++) {
             let elementHTML = `<div class="${products[i].container}">
             <img src=${products[i].image} width="${products[i].width}" height="${products[i].height}">
@@ -58,139 +55,67 @@ export function renderProducts() {
             </div>`;
             let elem = document.createElement("div");
             elem.innerHTML = elementHTML;
+            let svgIconArrow = elem.querySelector(".o-home-icon-arrow");
+            svgIconArrow.setAttribute("data-id", `${products[i].id}`);
+            svgIconArrow.addEventListener("click", addProductToBasket);
             listOfElements.push(elem);
         }
-        if (countOfElements<3) {
-            for (let i = 0; i < countOfElements; i++) {
-                let element = listOfElements.shift();
-                elementFirstContainer.appendChild(element);
-                listOfElements.push(element);
-            }
-        }
-        else {
             for (let i = 0; i < 3; i++) {
-                let element = listOfElements.shift();
-                elementFirstContainer.appendChild(element);
-                countOfElements = countOfElements-1;
-                listOfElements.push(element);
+                elementFirstContainer.appendChild(listOfElements.shift());
             }
-            if (countOfElements!=0) {
-                let firstChild = elementsColumnContainers[0].firstChild;
-                let element = listOfElements.shift();
-                elementsColumnContainers[0].insertBefore(element, firstChild);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[3].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[3].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[4].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[4].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[0].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[0].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[1].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[1].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnContainers[1].insertBefore(element, elementsColumnStrings[5]);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[2].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[2].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[5].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-            if (countOfElements!=0) {
-                let element = listOfElements.shift();
-                elementsColumnStrings[5].appendChild(element);
-                listOfElements.push(element);
-                countOfElements = countOfElements-1;
-            }
-        }
-        listOfElements.forEach((item) => {
-            let svgIconTagUse = item.querySelector(".o-home-icon-arrow");
-            svgIconTagUse.addEventListener("click", addProductToBasket);
-        })      
-    }
+            let firstChild = elementsColumnContainers[0].firstChild;
+            elementsColumnContainers[0].insertBefore(listOfElements.shift(), firstChild);
+            elementsColumnStrings[3].appendChild(listOfElements.shift());
+            elementsColumnStrings[3].appendChild(listOfElements.shift());
+            elementsColumnStrings[4].appendChild(listOfElements.shift());
+            elementsColumnStrings[4].appendChild(listOfElements.shift());
+            elementsColumnStrings[0].appendChild(listOfElements.shift());
+            elementsColumnStrings[0].appendChild(listOfElements.shift());
+            elementsColumnStrings[1].appendChild(listOfElements.shift());
+            elementsColumnStrings[1].appendChild(listOfElements.shift());
+            elementsColumnContainers[1].insertBefore(listOfElements.shift(), elementsColumnStrings[5]);
+            elementsColumnStrings[2].appendChild(listOfElements.shift());;
+            elementsColumnStrings[2].appendChild(listOfElements.shift());
+            elementsColumnStrings[5].appendChild(listOfElements.shift());
+            elementsColumnStrings[5].appendChild(listOfElements.shift()); 
+      });
 };
 
 function addProductToBasket(event) {
     let objectEvent = event.target;
     if (event.target.tagName == "svg") {
-        let parent = objectEvent.parentNode.parentNode.parentNode;
-        let index = listOfElements.indexOf(parent);
-        if (basket.checkProduct(products[index].id) == -1) { 
-            basket.addToBasket(products[index]);
+        let id = objectEvent.getAttribute("data-id");
+        let product = getProduct(id);
+        if (basket.checkProduct(product.id) == -1) { 
+            basket.addToBasket(product);
+            document.querySelector(".l-header__circle-2").innerText = basket.sumCount();
+            document.querySelector(".l-header_o-total-price-article").innerText = basket.sumPrices() + " $";
             alert("Товар был добавлен в корзину");
         } else {
-            alert("Товар уже был добавлен в корзину");
+            alert("Товар уже в корзине");
         }; 
     }
     else if (event.target.tagName == "use") {
-        let parent = objectEvent.parentNode.parentNode.parentNode.parentNode;
-        let index = listOfElements.indexOf(parent);
-        if (basket.checkProduct(products[index].id) == -1) { 
-            basket.addToBasket(products[index]);
+        let parent = objectEvent.parentNode;
+        let id = parent.getAttribute("data-id");
+        let product = getProduct(id);
+        if (basket.checkProduct(product.id) == -1) { 
+            basket.addToBasket(product);
+            document.querySelector(".l-header__circle-2").innerText = basket.sumCount();
+            document.querySelector(".l-header_o-total-price-article").innerText = basket.sumPrices() + " $";
             alert("Товар был добавлен в корзину");
         }
         else {
-            alert("Товар уже был добавлен в корзину");
+            alert("Товар уже в корзине");
         } 
     }
     else {
         alert("Ошибка добавления товара в корзину");
+    }
+}
+
+function getProduct(id) {
+    for(let i=0; i<products.length; i++) {
+        if (products[i].id==id) return products[i];
     }
 }
