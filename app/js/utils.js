@@ -1,14 +1,14 @@
 export const HostName = 'http://localhost:3000';
 
 export const durationOfAnimation = () =>{
-  const timeout = 2000;
+  const timeout = Math.floor(Math.random()*3000) + 1000;
   return new Promise((resolve,reject) => {
       if (timeout>=0){
           setTimeout(()=>{
-              resolve('successful');
+              resolve('getData successfull');
           },timeout);
       } else {
-          reject('error in proceedPaymentInfo');
+          reject('Error');
       }
   });
 };

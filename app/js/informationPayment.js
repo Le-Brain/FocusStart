@@ -5,21 +5,20 @@ const templateInformationPayment = document.querySelector(".informationpayment")
 
 class InformationPayment {
     constructor() {
-        this._firstName = "";
-        this._lastName = "";
-        this._companyName = "";
-        this._country = "";
-        this._cityTown = "";
-        this._postcode = "";
-        this._address = "";
-        this._email = "";
-        this._phone = "";
+        this._firstName = "Jhone";
+        this._lastName = "Smith";
+        this._companyName = "Rosuson Industries";
+        this._country = "United Kingdom";
+        this._cityTown = "e.g. New York";
+        this._postcode = "e.g. 358745";
+        this._address = "eg. 2nd steer, Costrica, Uk 354548";
+        this._email = "abc@xyz.com";
+        this._phone = "eg. 94 788 1221";
     };
 
     renderInformationPaymentPage() {
-        document.querySelector(".l-header__circle-2").innerText = basket.sumCount();
-        document.querySelector(".l-header_o-total-price-article").innerText = basket.sumPrices() + " $";
         window.location.hash = "#informationPayment";
+        basket.renderSmallKorzina();
         let informationPaymentPage = document.importNode(templateInformationPayment.content, true);
         let maincontent = document.querySelector(".mainsectioncontent"); // template Main Section
         maincontent.removeChild(maincontent.lastChild);
@@ -32,6 +31,12 @@ class InformationPayment {
         backButton.addEventListener("click", basket.renderKorzina);
         nextButton.addEventListener("click", function() { userInformation.saveInformation(section); });
         nextButton.addEventListener("click", checkPayment.renderCheckPaymentPage);
+        let inputBlocks = section.querySelectorAll(".o-input");
+        inputBlocks.forEach((item) => {
+            item.addEventListener("click", clearData);
+        });
+        let inputLongBlock = section.querySelector(".o-input-long");
+        inputLongBlock.addEventListener("click", clearData);
     };
 
     setInformation(informationPaymentPage) {
@@ -133,5 +138,10 @@ class InformationPayment {
     };
 };
 
+
+function clearData(event) {
+    let element = event.target;
+    element.value = "";
+}
 
 export const userInformation = new InformationPayment();

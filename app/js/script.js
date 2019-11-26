@@ -1,7 +1,9 @@
 import { basket } from '/js/classbasket.js'
 import { XHRwithPromise, HostName } from '/js/utils.js';
 
-const mainsection = document.querySelector(".maincont");
+const mainsection = document.querySelector(".maincont"); // Template main page
+const mainsectionCategoryPage = document.querySelector(".contentofcategory"); // Template category page
+const categoryPageProduct = document.querySelector(".itemofcategorycontent");
 export var products;
 var listOfElements = [];
 
@@ -27,10 +29,9 @@ function generateRandomNumbers(randLength, min, max) {
     return randArray;
 }
 
-export function renderProducts() {
+export function renderProducts() { 
     window.location.hash = "#products";
-    document.querySelector(".l-header__circle-2").innerText = basket.sumCount();
-    document.querySelector(".l-header_o-total-price-article").innerText = basket.sumPrices() + " $";
+    basket.renderSmallKorzina();
     let maincontentTemplate = document.importNode(mainsection.content, true);
     let maincontent = document.querySelector(".mainsectioncontent");
     maincontent.removeChild(maincontent.lastChild);
@@ -79,6 +80,39 @@ export function renderProducts() {
             elementsColumnStrings[5].appendChild(listOfElements.shift());
             elementsColumnStrings[5].appendChild(listOfElements.shift()); 
       });
+};
+
+export function renderProductsByCategory(categoryString) { // CategoryString - render страницы по категории. Не используется, т.к всего 2 json'а объектов. Выбирается один рандомно
+    window.location.hash = "#productsCategory";
+    basket.renderSmallKorzina();
+    let contentTemplate = document.importNode(mainsectionCategoryPage.content, true);
+    let maincontent = document.querySelector(".mainsectioncontent");
+    maincontent.removeChild(maincontent.lastChild);
+    let section = contentTemplate.querySelector(".l-home-main");
+    maincontent.appendChild(section);
+    let containers = section.querySelectorAll(".l-home-first-type-container");
+    var countOfElements = 17;
+    var numberCategory = Math.floor(Math.random()*2)+1;
+    XHRwithPromise(HostName.concat(`/api/products/objects${numberCategory}.json`), 'GET').then(function(result) {
+        products = result;
+        for (let i=0, j=0; i<countOfElements; i++) {
+            if (i==4 || i==8 || i==12 || i==16 || i==20 ) j=j+1;
+            let productTemplate = document.importNode(categoryPageProduct.content, true);
+            let itemProduct = productTemplate.querySelector(".l-home-second-type-container__second-block");
+            let imageOfProduct = itemProduct.querySelector("img");
+            let descriptionProduct = itemProduct.querySelector(".o-home-title-first");
+            let productName = itemProduct.querySelector(".o-home-title-second");
+            let priceProduct = itemProduct.querySelector(".o-home-title-third");
+            imageOfProduct.setAttribute("src", `${products[i].image}`);
+            descriptionProduct.innerText = products[i].description;
+            productName.innerText = products[i].productname;
+            priceProduct.innerText = String(products[i].price).concat(" $");
+            let svgIconArrow = itemProduct.querySelector(".o-home-icon-arrow");
+            svgIconArrow.setAttribute("data-id", `${products[i].id}`);
+            svgIconArrow.addEventListener("click", addProductToBasket);
+            containers[j].appendChild(itemProduct);
+        }
+    });
 };
 
 function addProductToBasket(event) {

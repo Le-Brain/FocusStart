@@ -9,9 +9,8 @@ class SuccessPayment {
     };
 
     renderSuccessPaymentPage() {
-        document.querySelector(".l-header__circle-2").innerText = basket.sumCount();
-        document.querySelector(".l-header_o-total-price-article").innerText = basket.sumPrices() + " $";
         window.location.hash = "#successPayment";
+        basket.renderSmallKorzina();
         let successPaymentPage = document.importNode(templateSuccessPayment.content, true);
         let maincontent = document.querySelector(".mainsectioncontent"); // template Main Section
         if (maincontent.lastChild != undefined) {

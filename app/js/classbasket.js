@@ -25,7 +25,7 @@ class Basket {
             this._totalCounts = this._totalCounts + item.count;
         });
         return this._totalCounts;
-    }
+    };
 
     getPriceOfProductById(id) {
         let price;
@@ -33,7 +33,7 @@ class Basket {
             if (item.id == id) price = item.price;
         });
         return price;
-    }
+    };
 
     getCountOfProductById(id) {
         let count;
@@ -41,7 +41,19 @@ class Basket {
             if (parseInt(item.id, 10) == id) count = item.count;
         });
         return count;
-    }
+    };
+
+    clearBasket() {
+        this._products = [];
+        this._productsCounts = [];
+        this._totalPrice = 0;
+        this._totalCounts = 0;
+    };
+
+    renderSmallKorzina() {
+        document.querySelector(".l-header__circle-2").innerText = this.sumCount();
+        document.querySelector(".l-header_o-total-price-article").innerText = this.sumPrices() + " $";
+    };
 
     renderKorzina() {
         window.location.hash = "#basket";
@@ -77,7 +89,11 @@ class Basket {
         let subTotal = document.querySelector("#subtotal");
         subTotal.innerText = "$" + basket.sumPrices();
         let checkoutButton = document.querySelector("#processcheckout");
-        checkoutButton.addEventListener("click", userInformation.renderInformationPaymentPage);
+        if (basket._totalPrice == 0) {
+            checkoutButton.addEventListener("click", messageAboutEmpty);
+        } else {
+            checkoutButton.addEventListener("click", userInformation.renderInformationPaymentPage);
+        }
     };
 
     addToBasket(object) {
@@ -172,6 +188,10 @@ function decrementCount(e) {
         basket.renderKorzina();
     }
     e.returnValue = false;
+}
+
+function messageAboutEmpty(e) {
+    alert("Корзина пуста");
 }
 
 export const basket = new Basket();

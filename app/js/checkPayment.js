@@ -15,9 +15,8 @@ class CheckPayment {
     }
 
     renderCheckPaymentPage() {
-        document.querySelector(".l-header__circle-2").innerText = basket.sumCount();
-        document.querySelector(".l-header_o-total-price-article").innerText = basket.sumPrices() + " $";
         window.location.hash = "#checkPayment";
+        basket.renderSmallKorzina();
         let checkPaymentPage = document.importNode(templateCheckPayment.content, true);
         let maincontent = document.querySelector(".mainsectioncontent"); // template Main Section
         if (maincontent.lastChild != undefined) {
@@ -25,6 +24,7 @@ class CheckPayment {
         }
         let section = checkPaymentPage.querySelector(".l-main");
         maincontent.appendChild(section);
+        checkPayment.setInformation(section);
         let tableOfItems = section.querySelector(".l-maincontent__c-table");
         for(let i=0; i<basket._products.length; i++) {
             let tableItem = document.importNode(tableItemTemplate.content, true); // template of item table
@@ -56,6 +56,12 @@ class CheckPayment {
         let payButton = section.querySelector("#checkpaymentpagepay");
         payButton.innerText = ("Pay ").concat(String(basket._totalPrice).concat(" $"));
         payButton.addEventListener("click", successPayment.renderSuccessPaymentPage);
+        let inputBlocks = section.querySelectorAll(".o-input");
+        inputBlocks.forEach((item) => {
+            item.addEventListener("click", clearData);
+        });
+        let inputBlockCard = section.querySelector(".o-input-visa");
+        inputBlockCard.addEventListener("click", clearData);
     };
 
     setInformation(section) {
@@ -96,23 +102,23 @@ class CheckPayment {
         inputBlocks.forEach((item) => {
             switch(item.getAttribute("id")){
                 case "nameoncard" : {
-                    checkPayment._nameOnCard = item.value;
+                    this._nameOnCard = item.value;
                     break;
                 }
                 case "cardNumber" : {
-                    checkPayment._cardNumber = item.value;
+                    this._cardNumber = item.value;
                     break;
                 }
                 case "validTrough" : {
-                    checkPayment._validTrough = item.value;
+                    this._validTrough = item.value;
                     break;
                 }
                 case "cvv" : {
-                    checkPayment._cvv = item.value;
+                    this._cvv = item.value;
                     break;
                 }
                 case "emailCheck" : {
-                    checkPayment._email = item.value;
+                    this._email = item.value;
                     break;
                 }
                 default : {
@@ -121,9 +127,14 @@ class CheckPayment {
             }
         });
         let inputBlockCard = section.querySelector(".o-input-visa");
-        checkPayment._cardNumber = inputBlockCard.value;
+        this._cardNumber = inputBlockCard.value;
     };
     
 };
+
+function clearData(event) {
+    let element = event.target;
+    element.value = "";
+}
 
 export const checkPayment = new CheckPayment();

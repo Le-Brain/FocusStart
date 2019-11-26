@@ -1,4 +1,4 @@
-import { renderProducts } from '/js/script.js';
+import { renderProducts, renderProductsByCategory } from '/js/script.js';
 import { XHRwithPromise, HostName } from '/js/utils.js';
 
 const menu_block = document.querySelector(".menublock");
@@ -6,11 +6,11 @@ const navArticles = document.querySelectorAll(".l-nav__o-title");
 
 function refreshProducts(event) {
     let article = event.target;
-    if (window.location.hash == "#products") {
-        renderProducts();
+    if (window.location.hash == "#productsCategory") {
+        renderProductsByCategory(article); // Render по категории
     }
     else {
-        window.location.hash = "#products";
+        window.location.hash = "#productsCategory";
     }
     let elementLi = article.parentNode.parentNode.parentNode.parentNode.parentNode;
     let value = elementLi.innerText;
@@ -19,7 +19,6 @@ function refreshProducts(event) {
 }
 
 export const displayMenu = function(event) {
-    removeAllMenu();
     let elementOfEvent = event.target;
     const categoryString = elementOfEvent.innerText;
     if (elementOfEvent.innerText.length < 20) {
@@ -49,7 +48,7 @@ export const hideMenu = function(event) {
     if (elem.innerText == "") elem.innerText = value;
 }
 
-const removeAllMenu = function() {
+export const removeAllMenu = function(event) {
     navArticles.forEach((item) =>{
         let value = item.innerText;
         item.removeChild(item.lastChild);
